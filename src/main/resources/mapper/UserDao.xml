@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yep.creater.dao.UserDao" >
+
+    <select id="selectUserById"  resultType="User">
+        SELECT * FROM user WHERE userId = #{userId} AND iState = 1;
+    </select>
+    <select id="selectAllUsers" resultType="User">
+        SELECT * FROM user WHERE iState = 1;
+    </select>
+    <update id="deleteUserById" >
+        UPDATE user SET iState = 0 WHERE userID = #{userId}
+    </update>
+    <update id="updateUser">
+        UPDATE user SET
+            userName = #{userName},
+            userPwd = #{userPwd}
+        WHERE userID = #{userId}
+    </update>
+    <insert id="addUser">
+        INSERT INTO user VALUES (#{userId}, #{userName}, #{userPwd}, 1);
+    </insert>
+
+</mapper>
