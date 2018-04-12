@@ -2,14 +2,20 @@ package com.yep.creater.controller;
 
 import com.yep.creater.model.User;
 import com.yep.creater.service.UserServiceInterface;
+import com.yep.creater.utils.ConstantMsg;
 import com.yep.creater.utils.ResultData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -23,7 +29,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/getUserById")
+    @RequestMapping(value = "/getUserById")
     public ResultData<User> getUserById(Integer userId){
         try {
             return userService.getUserById(userId);
@@ -89,6 +95,33 @@ public class UserController {
             return null;
         }
     }
+
+/*
+    @RequestMapping(value = "/login")
+    public ResultData<Map<String, Object>> login(@RequestParam("phone") String phone,
+                                                 @RequestParam("password") String password){
+        LOGGER.info("received user login request: phone = {}, password = {}", phone, password);
+        Map<String, Object> loginResult = new LinkedHashMap<String, Object>();
+        try{
+            if(StringUtils.isEmpty(phone)){
+                return ResultData.error(ConstantMsg.ERROR_USER_PHONE_NOT_NULL);
+            }
+            if(StringUtils.isEmpty(password)){
+
+                return ResultData.error(ConstantMsg.ERROR_USER_PASSWORD_NOT_NULL);
+            }
+            ResultData<User> resultData = userService.getUserByPhoneAndPassword(phone, password);
+            if(!resultData.isSuccessful()){
+                LOGGER.error("登录失败，用户名或密码错误: phone={}, password={}", phone, password);
+                return ResultData.error(resultData.getErrorMsg());
+            }
+            LOGGER.error("登录成功: phone={}, password={}", phone, password);
+        }catch(Exception e){
+             e.printStackTrace();
+        }
+        return ResultData.ok(loginResult);
+    }
+*/
 
 
 

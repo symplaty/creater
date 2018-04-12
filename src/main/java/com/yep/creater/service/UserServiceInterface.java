@@ -11,4 +11,5 @@ public interface UserServiceInterface {
     ResultData<Integer> deleteUserById(Integer userId) throws Exception;
     ResultData<Integer> updateUser(User user) throws Exception;
     ResultData<Integer> addUser(User user) throws Exception;
+    ResultData<User> getUserByPhoneAndPassword(String phone, String password) throws Exception;
 }

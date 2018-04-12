@@ -6,8 +6,17 @@ package com.yep.creater.model;
 public class User {
     private Integer userId;
     private String userName;
+    private String userPhone;
     private String userPwd;
     private Integer iState;
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
 
     public Integer getUserId() {
         return userId;

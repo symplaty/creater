@@ -9,16 +9,20 @@
         SELECT * FROM user WHERE iState = 1;
     </select>
     <update id="deleteUserById" >
-        UPDATE user SET iState = 0 WHERE userID = #{userId}
+        UPDATE user SET iState = 0 WHERE userID = #{userId};
     </update>
     <update id="updateUser">
         UPDATE user SET
             userName = #{userName},
-            userPwd = #{userPwd}
-        WHERE userID = #{userId}
+            userPwd = #{userPwd},
+            userPhone = #{userPhone}
+        WHERE userID = #{userId};
     </update>
     <insert id="addUser">
-        INSERT INTO user VALUES (#{userId}, #{userName}, #{userPwd}, 1);
+        INSERT INTO user VALUES (#{userId}, #{userPhone}, #{userName}, #{userPwd}, 1);
     </insert>
+    <select id="selectUserByPhoneAndPassword" resultType="User">
+        SELECT * FROM user WHERE userPhone = #{phone} AND userPwd = #{password} AND iState = 1;
+    </select>
 
 </mapper>

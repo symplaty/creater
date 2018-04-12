@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserServiceInterface {
     public ResultData<Integer> addUser(User user) throws Exception{
         return ResultData.ok(userDao.addUser(user));
     }
+
+    @Override
+    public ResultData<User> getUserByPhoneAndPassword(String phone, String password) throws Exception {
+        return ResultData.ok(userDao.selectUserByPhoneAndPassword(phone, password));
+    }
+
 }
